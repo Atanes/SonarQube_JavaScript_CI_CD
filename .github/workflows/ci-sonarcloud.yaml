@@ -1,5 +1,14 @@
 name: ci-sonarcloud
-on: [push]
+on: 
+  # Set your workflow to run on push events to the develop and all feature branches
+  push:
+    branches:
+      - develop
+      - feature/*
+  # Set your workflow to run on pull request events that target the main branch
+  pull_request:
+    branches: 
+      - main
 jobs:
   check-application:
    runs-on: ubuntu-latest
@@ -14,4 +23,5 @@ jobs:
        env:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+         
   
